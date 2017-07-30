@@ -3,7 +3,8 @@ import JWT
 
 private let verifyIdTokenDocsMessage = "See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token."
 private let projectIdMatchMessage = "Make sure the ID token comes from the same Firebase project as the service account used to authenticate this SDK."
-enum VerificationErrorType {
+
+public enum VerificationErrorType {
     case
     notFound(key: String),
     emptyProjectId,
@@ -15,7 +16,7 @@ enum VerificationErrorType {
     issuedAtTimeIsNotPast
 }
 
-struct VerificationError: Error {
+public struct VerificationError: Error {
     let type: VerificationErrorType
     let message: String?
 }
