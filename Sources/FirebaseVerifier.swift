@@ -80,7 +80,7 @@ public struct FirebaseVerifier {
             try jwt.verifyExpirationTime()
         }
 
-        guard let authTime = jwt.expirationTime else { throw VerificationError.init(type: .notFound(key: "auth_time"), message: nil) }
+        guard let authTime = jwt.expirationTime else { throw VerificationError(type: .notFound(key: "auth_time"), message: nil) }
         return VerifiedResult(userId: subject, authTime: authTime)
     }
 
@@ -108,8 +108,8 @@ extension JWT {
     var userId: String? { return payloadStringValue(with: "user_id") }
 
     func verifyExpirationTime() throws {
-        guard let issuedAtTime = issuedAtTime else { throw VerificationError.init(type: .notFound(key: "iat"), message: nil) }
-        guard let expirationTime = expirationTime else { throw VerificationError.init(type: .notFound(key: "exp"), message: nil) }
+        guard let issuedAtTime = issuedAtTime else { throw VerificationError(type: .notFound(key: "iat"), message: nil) }
+        guard let expirationTime = expirationTime else { throw VerificationError(type: .notFound(key: "exp"), message: nil) }
         let now = Date()
         if now < issuedAtTime {
             throw VerificationError(type: .issuedAtTimeIsNotPast,
@@ -124,7 +124,7 @@ extension JWT {
 
 extension String {
     func toJSON() -> Any? {
-        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
-        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        guard let data = data(using: .utf8) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data)
     }
 }
