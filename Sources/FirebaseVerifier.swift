@@ -1,7 +1,6 @@
 import Foundation
 import JWT
 
-private let alghorithm = "RS256"
 private let verifyIdTokenDocsMessage = "See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token."
 private let projectIdMatchMessage = "Make sure the ID token comes from the same Firebase project as the service account used to authenticate this SDK."
 enum VerificationErrorType {
@@ -100,6 +99,7 @@ extension JWT {
     var userId: String? { return payloadStringValue(with: "user_id") }
 
     func verifyAlgorithm() throws {
+        let alghorithm = "RS256"
         if algorithmName == alghorithm { return }
         let message = "Firebase ID token has incorrect algorithm. Expected '\(alghorithm)' but got '\(String(describing: algorithmName))'. \(verifyIdTokenDocsMessage)"
         throw VerificationError(type: .incorrectAlgorithm, message: message)
