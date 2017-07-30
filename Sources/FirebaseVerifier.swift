@@ -6,12 +6,12 @@ private let verifyIdTokenDocsMessage = "See https://firebase.google.com/docs/aut
 private let projectIdMatchMessage = "Make sure the ID token comes from the same Firebase project as the service account used to authenticate this SDK."
 enum VerificationErrorType {
     case
-    emptyProjectId,
     notFound(key: String),
+    emptyProjectId,
     incorrectAlgorithm,
     incorrectAudience,
     incorrectIssuer,
-    noSub,
+    incorrectSubject,
     expirationTimeIsNotFuture,
     issuedAtTimeIsNotPast
 }
@@ -52,11 +52,11 @@ public struct FirebaseVerifier {
 
         guard let subject = jwt.subject else {
             let message = "Firebase ID token has no 'sub' (subject) claim. \(verifyIdTokenDocsMessage)"
-            throw VerificationError(type: .noSub, message: message)
+            throw VerificationError(type: .notFound(key: "sub"), message: message)
         }
         guard subject.characters.count <= 128 else {
             let message = "Firebase ID token has 'sub' (subject) claim longer than 128 characters. \(verifyIdTokenDocsMessage)"
-            throw VerificationError(type: .noSub, message: message)
+            throw VerificationError(type: .incorrectSubject, message: message)
         }
 
         let cert = try fetchPublicCertificate(with: keyIdentifier)
