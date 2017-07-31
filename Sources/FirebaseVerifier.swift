@@ -77,7 +77,8 @@ public struct FirebaseVerifier {
         }
 
         let publicKeyLines = publicKey.split(separator: "\n")
-        return String(publicKeyLines.prefix(through: publicKeyLines.count - 2).suffix(from: 1).joined())
+        assert(publicKeyLines.count >= 3)
+        return String(publicKeyLines[1..<publicKeyLines.count - 1].joined())
             .makeBytes()
             .base64URLDecoded
     }
