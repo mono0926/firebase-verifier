@@ -7,11 +7,8 @@ private let projectIdMatchMessage = "Make sure the ID token comes from the same 
 public enum VerificationErrorType {
     case
     notFound(key: String),
+    incorrect(key: String),
     emptyProjectId,
-    incorrectAlgorithm,
-    incorrectAudience,
-    incorrectIssuer,
-    incorrectSubject,
     expirationTimeIsNotFuture,
     issuedAtTimeIsNotPast
 }
@@ -62,7 +59,7 @@ public struct FirebaseVerifier {
         }
         guard subject.characters.count <= 128 else {
             let message = "Firebase ID token has 'sub' (subject) claim longer than 128 characters. \(verifyIdTokenDocsMessage)"
-            throw VerificationError(type: .incorrectSubject, message: message)
+            throw VerificationError(type: .incorrect(key: "sub"), message: message)
         }
 
         let cert = try fetchPublicCertificate(with: keyIdentifier)
@@ -110,17 +107,17 @@ extension JWT {
         let alghorithm = "RS256"
         if algorithmName == alghorithm { return }
         let message = "Firebase ID token has incorrect algorithm. Expected '\(alghorithm)' but got '\(String(describing: algorithmName))'. \(verifyIdTokenDocsMessage)"
-        throw VerificationError(type: .incorrectAlgorithm, message: message)
+        throw VerificationError(type: .incorrect(key: "alg"), message: message)
     }
     func verifyAudience(with projectId: String) throws {
         if audience == projectId { return }
         let message = "Firebase ID token has incorrect 'aud' (audience) claim. Expected '\(projectId)' but got '\(String(describing: audience))'. \(projectIdMatchMessage) \(verifyIdTokenDocsMessage)"
-        throw VerificationError(type: .incorrectAudience, message: message)
+        throw VerificationError(type: .incorrect(key: "aud"), message: message)
     }
     func verifyIssuer(with projectId: String) throws {
         if issuer == "https://securetoken.google.com/\(projectId)" { return }
         let message = "Firebase ID token has incorrect 'iss' (issuer) claim. Expected https://securetoken.google.com/\(projectId) but got '\(String(describing: issuer))'. \(projectIdMatchMessage) + \(verifyIdTokenDocsMessage)"
-        throw VerificationError(type: .incorrectIssuer, message: message)
+        throw VerificationError(type: .incorrect(key: "iss"), message: message)
     }
     func verifyExpirationTime() throws {
         guard let issuedAtTime = issuedAtTime else { throw VerificationError(type: .notFound(key: "iat"), message: nil) }
