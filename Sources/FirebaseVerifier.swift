@@ -14,8 +14,8 @@ public enum VerificationErrorType {
 }
 
 public struct VerificationError: Error {
-    let type: VerificationErrorType
-    let message: String?
+    public let type: VerificationErrorType
+    public let message: String?
 }
 
 extension VerificationError: CustomStringConvertible {
@@ -25,20 +25,20 @@ extension VerificationError: CustomStringConvertible {
 }
 
 public struct VerifiedResult {
-    let userId: String
-    let authTime: Date
+    public let userId: String
+    public let authTime: Date
     // TODO: provider_id, firebase
 }
 
 public struct FirebaseVerifier {
     public let projectId: String
-    init(projectId: String) throws {
+    public init(projectId: String) throws {
         if projectId.isEmpty {
             throw VerificationError(type: .emptyProjectId, message: nil)
         }
         self.projectId = projectId
     }
-    func verify(token: String, allowExpired: Bool = false) throws -> VerifiedResult {
+    public func verify(token: String, allowExpired: Bool = false) throws -> VerifiedResult {
         let jwt = try JWT(token: token)
 
         assert(jwt.subject == jwt.userId)
