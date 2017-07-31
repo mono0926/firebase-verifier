@@ -79,7 +79,7 @@ public struct FirebaseVerifier {
             throw VerificationError(type: .notFound(key: "public key"), message: message)
         }
 
-        let publicKeyLines = publicKey.split(separator: "\n")
+        let publicKeyLines = publicKey.characters.split(separator: "\n")
         assert(publicKeyLines.count >= 3)
         return String(publicKeyLines[1..<publicKeyLines.count - 1].joined())
             .makeBytes()
