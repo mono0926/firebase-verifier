@@ -21,6 +21,12 @@ public struct VerificationError: Error {
     let message: String?
 }
 
+extension VerificationError: CustomStringConvertible {
+    public var description: String {
+        return "type: \(type)\nmessage: \(String(describing: message))"
+    }
+}
+
 public struct VerifiedResult {
     let userId: String
     let authTime: Date
