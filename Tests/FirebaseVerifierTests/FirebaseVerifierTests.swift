@@ -13,7 +13,7 @@ class FirebaseVerifierTests: XCTestCase {
         do {
             _ = try verifier.verify(token: token)
         } catch let e as VerificationError {
-            if case .expirationTimeIsNotFuture = e.type {
+            if case .expirationTimeIsPast = e.type {
                 print(e)
             } else {
                 XCTFail()

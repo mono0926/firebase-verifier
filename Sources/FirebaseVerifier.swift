@@ -9,8 +9,8 @@ public enum VerificationErrorType {
     notFound(key: String),
     incorrect(key: String),
     emptyProjectId,
-    expirationTimeIsNotFuture,
-    issuedAtTimeIsNotPast
+    expirationTimeIsPast,
+    issuedAtTimeisFuture
 }
 
 public struct VerificationError: Error {
@@ -124,11 +124,11 @@ extension JWT {
         guard let expirationTime = expirationTime else { throw VerificationError(type: .notFound(key: "exp"), message: nil) }
         let now = Date()
         if now < issuedAtTime {
-            throw VerificationError(type: .issuedAtTimeIsNotPast,
+            throw VerificationError(type: .issuedAtTimeisFuture,
                                     message: "'exp'(\(expirationTime)) must be in the future. (now: \(now)")
         }
         if now >= expirationTime {
-            throw VerificationError(type: .expirationTimeIsNotFuture,
+            throw VerificationError(type: .expirationTimeIsPast,
                                     message: "'exp'(\(expirationTime)) must be in the future. (now: \(now)")
         }
     }
