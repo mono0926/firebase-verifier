@@ -125,7 +125,7 @@ extension JWT {
         let now = Date()
         if now < issuedAtTime {
             throw VerificationError(type: .issuedAtTimeisFuture,
-                                    message: "'exp'(\(expirationTime)) must be in the future. (now: \(now)")
+                                    message: "'iss'(\(issuedAtTime)) must be in the past. (now: \(now)")
         }
         if now >= expirationTime {
             throw VerificationError(type: .expirationTimeIsPast,
