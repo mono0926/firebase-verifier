@@ -72,7 +72,8 @@ public struct FirebaseVerifier {
 
     private func fetchPublicCertificate(with keyIdentifier: String) throws -> Bytes {
         // TODO: Cache-Control
-        let response = try String(contentsOf: URL(string: "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com")!)
+        let response = try String(contentsOf: URL(string: "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com")!,
+                                  encoding: .utf8)
 
         guard let keys = response.toJSON() as? NSDictionary, let publicKey = keys[keyIdentifier] as? String else {
             let message = "Firebase ID token has 'kid' claim which does not correspond to a known public key. Most likely the ID token is expired, so get a fresh token from your client app and try again. \(verifyIdTokenDocsMessage)"
