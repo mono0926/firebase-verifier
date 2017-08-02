@@ -76,7 +76,7 @@ public struct FirebaseVerifier {
                                   encoding: .utf8)
 
         guard let keys = response.toJSON() as? NSDictionary, let publicKey = keys[keyIdentifier] as? String else {
-            let message = "Firebase ID token has 'kid' claim which does not correspond to a known public key. Most likely the ID token is expired, so get a fresh token from your client app and try again. \(verifyIdTokenDocsMessage)"
+            let message = "Firebase ID token has 'kid'(\(keyIdentifier)) claim which does not correspond to a known public key. Most likely the ID token is expired, so get a fresh token from your client app and try again. \(verifyIdTokenDocsMessage)"
             throw VerificationError(type: .notFound(key: "public key"), message: message)
         }
 
