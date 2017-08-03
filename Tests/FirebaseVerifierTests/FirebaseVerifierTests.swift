@@ -7,7 +7,7 @@ class FirebaseVerifierTests: XCTestCase {
     private var verifier: FirebaseVerifier!
     override func setUp() {
         super.setUp()
-        verifier = try! FirebaseVerifier(projectId: projectId)
+        verifier = try! FirebaseJWTVerifier(projectId: projectId)
     }
     func testVerify() {
         do {

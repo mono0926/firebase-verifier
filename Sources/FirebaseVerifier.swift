@@ -30,7 +30,17 @@ public struct VerifiedResult {
     // TODO: provider_id, firebase
 }
 
-public struct FirebaseVerifier {
+public protocol FirebaseVerifier {
+    func verify(token: String, allowExpired: Bool) throws -> VerifiedResult
+}
+
+extension FirebaseVerifier {
+    public func verify(token: String) throws -> VerifiedResult {
+        return try verify(token: token, allowExpired: false)
+    }
+}
+
+public struct FirebaseJWTVerifier: FirebaseVerifier {
     public let projectId: String
     public init(projectId: String) throws {
         if projectId.isEmpty {
