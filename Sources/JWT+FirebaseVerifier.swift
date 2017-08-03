@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import JWT
 
 extension JWT {
     private func payloadStringValue(with key: String) -> String? {
