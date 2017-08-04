@@ -30,9 +30,9 @@ class FirebaseVerifierTests: XCTestCase {
     }
     func testVerify_allowExpired() {
         do {
-            let result = try verifier.verify(token: token, allowExpired: true)
-            XCTAssertEqual(result.userId, "Jlr8LXW2nhPNTnNtuJbYWGEN4aR2")
-            XCTAssertEqual(result.authTime, Date(rfc1123: "Wed, 2 Aug 2017 07:20:29 GMT"))
+            let user = try verifier.verify(token: token, allowExpired: true)
+            XCTAssertEqual(user.id, "Jlr8LXW2nhPNTnNtuJbYWGEN4aR2")
+            XCTAssertEqual(user.authTime, Date(rfc1123: "Wed, 2 Aug 2017 07:20:29 GMT"))
         } catch let e {
             print(e)
             XCTFail()

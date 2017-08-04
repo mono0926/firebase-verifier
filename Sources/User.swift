@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct VerifiedResult {
-    public let userId: String
+public struct User {
+    public let id: String
     public let authTime: Date
     // TODO: provider_id, firebase
-    public init(userId: String, authTime: Date) {
-        self.userId = userId
+    public init(id: String, authTime: Date) {
+        self.id = id
         self.authTime = authTime
     }
 }
