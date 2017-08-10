@@ -27,7 +27,7 @@ struct GooglePublicCertificateFetcher: PublicCertificateFetcher {
 
     private func extractCertificate(from text: String) -> String? {
         let text = text.replacingOccurrences(of: "\n", with: "")
-        let nsText = text as NSString
+        let nsText = NSString(string: text)
         let regex = try! NSRegularExpression(pattern: "-----BEGIN CERTIFICATE-----(.+)-----END CERTIFICATE-----", options: [])
         let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: nsText.length))
         if matches.count > 1 {
