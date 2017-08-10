@@ -26,21 +26,8 @@ struct GooglePublicCertificateFetcher: PublicCertificateFetcher {
     }
 
     private func extractCertificate(from text: String) -> String? {
-        let text = text.replacingOccurrences(of: "\n", with: "")
-        let nsText = NSString(string: text)
-        let regex = try! NSRegularExpression(pattern: "-----BEGIN CERTIFICATE-----(.+)-----END CERTIFICATE-----", options: [])
-        let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: nsText.length))
-        if matches.count > 1 {
-            print("\(text) contains multiple regex pattern(sandwitched by `BEGIN/END`), but those are ignored except for first one.")
-        }
-        guard let match = matches.first else {
-            return nil
-        }
-        let numberOfRanges = match.numberOfRanges
-        guard numberOfRanges == 2 else {
-            assert(false, "maybe invalid regular expression to: \(nsText.substring(with: match.range))")
-            return nil
-        }
-        return nsText.substring(with: match.rangeAt(1))
+        return text.replacingOccurrences(of: "\n", with: "")
+            .replacingOccurrences(of: "-----BEGIN CERTIFICATE-----", with: "")
+            .replacingOccurrences(of: "-----END CERTIFICATE-----", with: "")
     }
 }
