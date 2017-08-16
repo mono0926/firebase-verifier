@@ -23,6 +23,8 @@ extension JWT {
     var issuer: String? { return payloadStringValue(with: "iss") }
     var subject: String? { return payloadStringValue(with: "sub") }
     var userId: String? { return payloadStringValue(with: "user_id") }
+    var email: String? { return payloadStringValue(with: "email") }
+    var emailVerified: Bool? { return payload["email_verified"]?.bool }
 
     func verifyAlgorithm() throws {
         let alghorithm = "RS256"

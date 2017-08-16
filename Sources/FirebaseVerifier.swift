@@ -50,6 +50,6 @@ public struct FirebaseJWTVerifier: FirebaseVerifier {
         try jwt.verifySignature(using: signer)
 
         guard let authTime = jwt.expirationTime else { throw VerificationError(type: .notFound(key: "auth_time"), message: nil) }
-        return User(id: subject, authTime: authTime)
+        return User(jwt: jwt)
     }
 }

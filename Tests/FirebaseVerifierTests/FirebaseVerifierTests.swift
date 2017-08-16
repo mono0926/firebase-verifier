@@ -3,12 +3,12 @@ import FirebaseVerifier
 
 struct PublicCertificateFetcherStub: PublicCertificateFetcher {
     func fetch(with keyIdentifier: String) throws -> String {
-        return "MIIDHDCCAgSgAwIBAgIITo+FvJ4FyEkwDQYJKoZIhvcNAQEFBQAwMTEvMC0GA1UEAxMmc2VjdXJldG9rZW4uc3lzdGVtLmdzZXJ2aWNlYWNjb3VudC5jb20wHhcNMTcwODAyMDA0NTI2WhcNMTcwODA1MDExNTI2WjAxMS8wLQYDVQQDEyZzZWN1cmV0b2tlbi5zeXN0ZW0uZ3NlcnZpY2VhY2NvdW50LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMXOpXq0fgij2f1vM4ez7AbaQ5wIysuV+4QgLUR/9MZusTkKd4PFrfcxJTI8UUxTcbwTniY9awaVzp6UIGexZKowPS8hKeovSI+P9MKWQ+J5YNoT2YBNtoqrkUSF59LrbatFfiwkxcBicmg5EUbUlv2fXKEHuF4EDntr9r/a18QQ7bPVZjyyEjyS3wQ7AXhWos4ewpJmc90RHyGLxKkF3FvP9YQFQVx+608TPyqwE0a6aEciYJeFBfmWoyC7KESODsCXcLfDjiFoEAjrcntNWDqbGrM06LRWR6+eZt2k6ffE14UmigztanK9qI+a5FgAXz/O4riIxCsgDtPhNXial9cCAwEAAaM4MDYwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwFgYDVR0lAQH/BAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQEFBQADggEBAJpCU2xJ6QVgmeZkFP+Khw57Z0kPUYdrlVmIvZQG5LXsTMWcFtqRnr1hG1zBgYWD8EDlMLvRW2AA5QkoPGe4cp53BRwBPQBOSe2D5B1xgE1ofVaqdzrwbZCXYUnfqO2+fBms3odYsmK7S8CoCePxKYXLF3U7yNJJXDcGMbiJH0sIkqTux3QKpBJkXWD6xqGJda3A8nGTT3USBcIvM6RP/mHdrpPjbFoTTSzZ1g9b1DnwKpqUCmi0p4uhRdFG2CqZWW9NnULsWZzbbB5FvXk6AAO83gLpNB+2tBv7fY/uFBTZ+jYjrboiWmiD9+z7Qd5EU64bM2F/leE2HrDSPEdOwFI="
+        return "MIIDHDCCAgSgAwIBAgIIblyb+nkoC9kwDQYJKoZIhvcNAQEFBQAwMTEvMC0GA1UEAxMmc2VjdXJldG9rZW4uc3lzdGVtLmdzZXJ2aWNlYWNjb3VudC5jb20wHhcNMTcwODE1MDA0NTI2WhcNMTcwODE4MDExNTI2WjAxMS8wLQYDVQQDEyZzZWN1cmV0b2tlbi5zeXN0ZW0uZ3NlcnZpY2VhY2NvdW50LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANIO54IsAHgPQ3BZvDsOXIptiaGSNkC1miCtHWQ654IDsq4yLO5j9MWj/tZ/7sp7Pi/KJskMebda5L9/7OaI6CIxVt33vcCXC+E2v3AHusnVsETXbNE3Az5xcLpclaAM4nCFcvMnQocKX5WAuAs7qJW4AfyhnjrGTcs0ULGPtNCdAYWC8+QNcwYJleZMA+YoudGURvt14Ycd2FU5sjDbOCtzthQAgQqbsE2tJRIMn2qn66favsC/2SXd8bwMbKZp0StkXPHZ/pu6KD5ueqrR++yGQNxJVWPLyjSmoezqrYEOCkc25wXoQ7O2ACofI6ter27BcDuDUjCHYRLKLN+qUSUCAwEAAaM4MDYwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwFgYDVR0lAQH/BAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQEFBQADggEBAA8mLZm5/8jQ4Yeex0WLYiydCjveBW8L/BIuM+5CPLEBJtKhn54Vk/KsqXETS6/qOEOvTrYkE04e6h8U0DQHKeRcUFniI1uonK2mbKaAlJCNqdzE/29y8m9Jcf6XlfgXWG3nf6Ie0qLLgzLNFs7GsR3YFHDnpREI9mH7v59WVo2lek+gQ6gSgHAR7EUFhvZIWq1FA7DsuK44VEaCqcFRpr8W6N5prui1I+fhCHRH8GBzaaE+RU/SX7F+uLjq26/UNlmFGuoVrzpxBs/PyZTacNxQ9FXa7qbQQLkUU3mVC4DQ8CnvdqZoHSW9wup7NwbXgR+ciPDm5y8maIUWS23JCxY="
     }
 }
 
 class FirebaseVerifierTests: XCTestCase {
-    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyYmRjZDkyNGZhNWI1ZThhYjkwNTQ3M2ZjZTYxMGU3MWU0MjJlNmQifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaWdob3N0LWRldiIsInByb3ZpZGVyX2lkIjoiYW5vbnltb3VzIiwiYXVkIjoiaWdob3N0LWRldiIsImF1dGhfdGltZSI6MTUwMTM4MTc3OSwidXNlcl9pZCI6IkpscjhMWFcybmhQTlRuTnR1SmJZV0dFTjRhUjIiLCJzdWIiOiJKbHI4TFhXMm5oUE5Ubk50dUpiWVdHRU40YVIyIiwiaWF0IjoxNTAxNjU0ODI5LCJleHAiOjE1MDE2NTg0MjksImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiYW5vbnltb3VzIn19.ptrdDsLRFC0zPfm-W-aeIswUshtyTPKA_I8P42qaJFBIc0QBfWh9JhnBFiEjjde79OY2uT-wTLOyMtoosiTOikZR4cDJA2N7IYR-z4Jgrj9ImAOQn9lzED0ftmBQIUBw0fhPC8oiDYjW24GAPRlW1dmn28TjClP2GqzzhDv563QrGg9lSbiakxSPtaEpx492NLeR0CShMptFaCpDyKH6xw3yzg6Xp1GbwSycNDry5fJs0QwO-tOyoPQ0YFUcxIW3mdeooxc0kOgr62wSWg2tf1Kc4_Qhcyk-PBrO1XmPd8KTD7Ix8npzNhW6KCBOcWtPZA-ffPOpBSrJno4p28C4Qg"
+    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMxMjNlMWE3ZTY5MTEyNTI4NDQ2M2ZjOWJmNmEyNGM0YmVkOGQ5NTIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaWdob3N0LWRldiIsImF1ZCI6ImlnaG9zdC1kZXYiLCJhdXRoX3RpbWUiOjE1MDI4NTI3NTgsInVzZXJfaWQiOiJVMXN5bkxzRzFOTUFnS0IwZk5qZXVsSXBsZGYxIiwic3ViIjoiVTFzeW5Mc0cxTk1BZ0tCMGZOamV1bElwbGRmMSIsImlhdCI6MTUwMjg1Mjc1OCwiZXhwIjoxNTAyODU2MzU4LCJlbWFpbCI6Im1vbm8wOTI2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMTE0Njk0MTY3MDQyOTUiXSwiZW1haWwiOlsibW9ubzA5MjZAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.GlawQ9T0M-3lvilttUwh7wuT7e3c5aPCKibOfdYIAZ2HNCZ7pPr2xuyeLMVQsp5iMZ_zlkd82QFTkf2GnJOzRu1c537QbdcJWjKf5-lgcYNb-UprjPfKM0trbVU6DkzxJKUWVaBHV6yEOf-9ESj7_fiqnwizTZQWACf5qD1dHTx27cS1cGboTyZ9FxgpPmiuEdH5tdOCAb8ekdDAPmHr7CMDMSSEOh7BsqRB3-EV9NaXgTAXwi5NoAyycxTYMBe_Y_HjlifAx18J5Tqq2ZVw0IiSMUB1z8Ph8IZ7Bf3HIZSj5HS14JBlLckrZAGO-bwkszSd9z2YVhYEvJMZuQ4LbA"
     private let projectId = "ighost-dev"
     private var verifier: FirebaseVerifier!
     override func setUp() {
@@ -31,8 +31,19 @@ class FirebaseVerifierTests: XCTestCase {
     func testVerify_allowExpired() {
         do {
             let user = try verifier.verify(token: token, allowExpired: true)
-            XCTAssertEqual(user.id, "Jlr8LXW2nhPNTnNtuJbYWGEN4aR2")
-            XCTAssertEqual(user.authTime, Date(rfc1123: "Wed, 2 Aug 2017 07:20:29 GMT"))
+            XCTAssertEqual(user.id, "U1synLsG1NMAgKB0fNjeulIpldf1")
+            XCTAssertEqual(user.authTime, Date(rfc1123: "Wed, 16 Aug 2017 03:05:58 GMT"))
+            XCTAssertEqual(user.issuedAtTime, Date(rfc1123: "Wed, 16 Aug 2017 03:05:58 GMT"))
+            XCTAssertEqual(user.expirationTime, Date(rfc1123: "Wed, 16 Aug 2017 04:05:58 GMT"))
+            XCTAssertEqual(user.email, "mono0926@gmail.com")
+            XCTAssertEqual(user.emailVerified, false)
+            let firebase = user.firebase
+            XCTAssertNotNil(firebase)
+            XCTAssertEqual(firebase.signInProvider, "facebook.com")
+            let identities = firebase.identities
+            XCTAssertEqual(identities.count, 2)
+            XCTAssertEqual(identities["facebook.com"]!, ["10211469416704295"])
+            XCTAssertEqual(identities["email"]!, ["mono0926@gmail.com"])
         } catch let e {
             print(e)
             XCTFail()
