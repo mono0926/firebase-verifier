@@ -10,10 +10,10 @@ struct PublicCertificateFetcherStub: PublicCertificateFetcher {
 class FirebaseVerifierTests: XCTestCase {
     private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMxMjNlMWE3ZTY5MTEyNTI4NDQ2M2ZjOWJmNmEyNGM0YmVkOGQ5NTIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaWdob3N0LWRldiIsImF1ZCI6ImlnaG9zdC1kZXYiLCJhdXRoX3RpbWUiOjE1MDI4NTI3NTgsInVzZXJfaWQiOiJVMXN5bkxzRzFOTUFnS0IwZk5qZXVsSXBsZGYxIiwic3ViIjoiVTFzeW5Mc0cxTk1BZ0tCMGZOamV1bElwbGRmMSIsImlhdCI6MTUwMjg1Mjc1OCwiZXhwIjoxNTAyODU2MzU4LCJlbWFpbCI6Im1vbm8wOTI2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMTE0Njk0MTY3MDQyOTUiXSwiZW1haWwiOlsibW9ubzA5MjZAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.GlawQ9T0M-3lvilttUwh7wuT7e3c5aPCKibOfdYIAZ2HNCZ7pPr2xuyeLMVQsp5iMZ_zlkd82QFTkf2GnJOzRu1c537QbdcJWjKf5-lgcYNb-UprjPfKM0trbVU6DkzxJKUWVaBHV6yEOf-9ESj7_fiqnwizTZQWACf5qD1dHTx27cS1cGboTyZ9FxgpPmiuEdH5tdOCAb8ekdDAPmHr7CMDMSSEOh7BsqRB3-EV9NaXgTAXwi5NoAyycxTYMBe_Y_HjlifAx18J5Tqq2ZVw0IiSMUB1z8Ph8IZ7Bf3HIZSj5HS14JBlLckrZAGO-bwkszSd9z2YVhYEvJMZuQ4LbA"
     private let projectId = "ighost-dev"
-    private var verifier: FirebaseVerifier!
+    private var verifier: Verifier!
     override func setUp() {
         super.setUp()
-        verifier = try! FirebaseJWTVerifier(projectId: projectId, publicCertificateFetcher: PublicCertificateFetcherStub())
+        verifier = try! JWTVerifier(projectId: projectId, publicCertificateFetcher: PublicCertificateFetcherStub())
     }
     func testVerify() {
         do {

@@ -1,17 +1,17 @@
 import Foundation
 import JWT
 
-public protocol FirebaseVerifier {
+public protocol Verifier {
     func verify(token: String, allowExpired: Bool) throws -> User
 }
 
-extension FirebaseVerifier {
+extension Verifier {
     public func verify(token: String) throws -> User {
         return try verify(token: token, allowExpired: false)
     }
 }
 
-public struct FirebaseJWTVerifier: FirebaseVerifier {
+public struct JWTVerifier: Verifier {
     public let projectId: String
     public let publicCertificateFetcher: PublicCertificateFetcher
     public init(projectId: String, publicCertificateFetcher: PublicCertificateFetcher = GooglePublicCertificateFetcher()) throws {
@@ -49,7 +49,6 @@ public struct FirebaseJWTVerifier: FirebaseVerifier {
         let signer = try RS256(x509Cert: cert)
         try jwt.verifySignature(using: signer)
 
-        guard let authTime = jwt.expirationTime else { throw VerificationError(type: .notFound(key: "auth_time"), message: nil) }
         return User(jwt: jwt)
     }
 }

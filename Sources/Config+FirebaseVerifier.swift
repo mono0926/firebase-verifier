@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-extension FirebaseJWTVerifier: ConfigInitializable {
+extension JWTVerifier: ConfigInitializable {
     public init(config: Config) throws {
         guard let firebase = config["firebase"] else {
             throw ConfigError.missingFile("firebase")
@@ -16,18 +16,18 @@ extension FirebaseJWTVerifier: ConfigInitializable {
         guard let projectId = firebase["project_id"]?.string else {
             throw ConfigError.missing(key: ["project_id"], file: "firebase", desiredType: String.self)
         }
-        self = try FirebaseJWTVerifier(projectId: projectId)
+        self = try JWTVerifier(projectId: projectId)
     }
 }
 
 extension Config {
-    public func resolveFirebaseVerifier() throws -> FirebaseVerifier {
+    public func resolveFirebaseVerifier() throws -> Verifier {
         return try customResolve(
             unique: "firebase",
             file: "firebase",
             keyPath: ["verifier"],
-            as: FirebaseVerifier.self,
-            default: FirebaseJWTVerifier.init
+            as: Verifier.self,
+            default: JWTVerifier.init
         )
     }
 }
