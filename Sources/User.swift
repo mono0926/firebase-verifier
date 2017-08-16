@@ -21,6 +21,11 @@ public struct Firebase {
         }
         signInProvider = json["sign_in_provider"]!.string!
     }
+
+    public init(identities: [String: [String]], signInProvider: String) {
+        self.identities = identities
+        self.signInProvider = signInProvider
+    }
 }
 
 public struct User {
@@ -32,13 +37,29 @@ public struct User {
     public let emailVerified: Bool?
     public let firebase: Firebase
 
+    public init(id: String,
+                authTime: Date,
+                issuedAtTime: Date,
+                expirationTime: Date,
+                email: String? = nil,
+                emailVerified: Bool? = nil,
+                firebase: Firebase = Firebase(identities: [:], signInProvider: "")) {
+        self.id = id
+        self.authTime = authTime
+        self.issuedAtTime = issuedAtTime
+        self.expirationTime = expirationTime
+        self.email = email
+        self.emailVerified = emailVerified
+        self.firebase = firebase
+    }
+
     public init(jwt: JWT) {
-        id = jwt.userId!
-        authTime = jwt.authTime!
-        issuedAtTime = jwt.issuedAtTime!
-        expirationTime = jwt.expirationTime!
-        email = jwt.email
-        emailVerified = jwt.emailVerified
-        firebase = Firebase(json: jwt.payload["firebase"]!)
+        self.init(id: jwt.userId!,
+                  authTime: jwt.authTime!,
+                  issuedAtTime: jwt.issuedAtTime!,
+                  expirationTime: jwt.expirationTime!,
+                  email: jwt.email,
+                  emailVerified: jwt.emailVerified,
+                  firebase: Firebase(json: jwt.payload["firebase"]!))
     }
 }
