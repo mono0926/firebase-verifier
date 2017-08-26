@@ -28,7 +28,7 @@ extension Config {
     }
     public func resolveFirebaseVerifier() throws -> Verifier {
         return try customResolve(
-            unique: "firebase",
+            unique: "verifier",
             file: "firebase",
             keyPath: ["verifier"],
             as: Verifier.self,
