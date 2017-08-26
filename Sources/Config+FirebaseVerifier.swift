@@ -13,8 +13,8 @@ extension JWTVerifier: ConfigInitializable {
         guard let firebase = config["firebase"] else {
             throw ConfigError.missingFile("firebase")
         }
-        guard let projectId = firebase["project_id"]?.string else {
-            throw ConfigError.missing(key: ["project_id"], file: "firebase", desiredType: String.self)
+        guard let projectId = firebase["projectId"]?.string else {
+            throw ConfigError.missing(key: ["projectId"], file: "firebase", desiredType: String.self)
         }
         self = try JWTVerifier(projectId: projectId)
     }
