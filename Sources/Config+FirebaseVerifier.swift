@@ -21,6 +21,11 @@ extension JWTVerifier: ConfigInitializable {
 }
 
 extension Config {
+    public func addConfigurable<
+        V: Verifier
+        >(verifier: @escaping Config.Lazy<V>, name: String) {
+        customAddConfigurable(closure: verifier, unique: "verifier", name: name)
+    }
     public func resolveFirebaseVerifier() throws -> Verifier {
         return try customResolve(
             unique: "firebase",
